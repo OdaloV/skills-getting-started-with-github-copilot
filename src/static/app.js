@@ -7,11 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to fetch activities from API
   async function fetchActivities() {
     try {
-      const response = await fetch("/activities");
+      const response = await fetch("/activities", { cache: 'no-cache' });
       const activities = await response.json();
       console.log("[fetchActivities] activities loaded", activities);
 
       const participantsCards = document.getElementById("participants-cards");
+      console.log("[fetchActivities] participantsCards element found?", participantsCards !== null, "element:", participantsCards);
 
       // Clear loading message and the activity selector so we avoid duplicate options
       activitiesList.innerHTML = "";
@@ -91,20 +92,25 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`[activity card] ${name} participants`, details.participants);
 
         // Build participant summary cards for the separate participants section
-        const participantSummaryCard = document.createElement("div");
-        participantSummaryCard.className = "activity-participant-card";
-        participantSummaryCard.innerHTML = `
-          <h4>${name}</h4>
-          <p class="participant-count">${details.participants.length} participant(s)</p>
-          <div class="participant-badges">
-            ${
-              details.participants.length
-                ? details.participants.map((participant) => `<span class="participant-badge">${participant}</span>`).join("")
-                : "<span class=\"participant-empty\">No participants yet</span>"
-            }
-          </div>
-        `;
-        participantsCards.appendChild(participantSummaryCard);
+        if (!participantsCards) {
+          console.warn("[participantSummaryCard] participantsCards element is null, skipping card append");
+        } else {
+          const participantSummaryCard = document.createElement("div");
+          participantSummaryCard.className = "activity-participant-card";
+          participantSummaryCard.innerHTML = `
+            <h4>${name}</h4>
+            <p class="participant-count">${details.participants.length} participant(s)</p>
+            <div class="participant-badges">
+              ${
+                details.participants.length
+                  ? details.participants.map((participant) => `<span class="participant-badge">${participant}</span>`).join("")
+                  : "<span class=\"participant-empty\">No participants yet</span>"
+              }
+            </div>
+          `;
+          participantsCards.appendChild(participantSummaryCard);
+          console.log(`[participantSummaryCard] appended for ${name}`);
+        }
 
         // Add option to select dropdown
         const option = document.createElement("option");
