@@ -65,6 +65,105 @@ section h3 {
   background-color: #f9f9f9;
 }
 
+.participants-section {
+  margin-top: 12px;
+  padding: 10px;
+  border-top: 1px dashed #ccc;
+}
+
+.participants-section p {
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #333;
+}
+
+.participants-list {
+  list-style: disc;
+  margin-left: 0;
+  padding-left: 20px;
+  color: #555;
+}
+
+.participants-list li {
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.participant-name {
+  color: #333;
+}
+
+#participants-container {
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+#participants-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.activity-participant-card {
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+.activity-participant-card h4 {
+  margin-bottom: 6px;
+  color: #1a237e;
+}
+
+.participant-count {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.participant-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.participant-badge {
+  background-color: #e8f0fe;
+  color: #1a237e;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid #c5cae9;
+}
+
+.participant-empty {
+  font-style: italic;
+  color: #777;
+}
+
+.delete-participant {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #f8bbd0;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-participant:hover {
+  background: #ffcdd2;
+}
+
 .activity-card h4 {
   margin-bottom: 10px;
   color: #0066cc;
